@@ -13,7 +13,7 @@
   const api = axios.create({
     baseURL:
       import.meta.env.VITE_API_URL ||
-      "https://ai-habit-tracker-1-msej.onrender.com/api",
+      "https://ai-habit-tracker-new.onrender.com/api",
   });
 
   api.interceptors.request.use((config) => {
