@@ -19,6 +19,8 @@ const allowedOrigins = (process.env.CLIENT_URL || "")
 
 const corsOptions = {
     origin(origin, cb) {
+        console.log("Origin:", origin);
+        console.log("Allowed Origins:", allowedOrigins);
 
         if (!origin) return cb(null, true);
 
@@ -34,7 +36,8 @@ allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
-app.options("/{*splat}", cors(corsOptions));
+// app.options("/{*splat}", cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (req,res)=>
