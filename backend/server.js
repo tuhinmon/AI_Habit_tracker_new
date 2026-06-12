@@ -36,8 +36,8 @@ allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
-// app.options("/{*splat}", cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options("/{*splat}", cors(corsOptions));
+// app.options("*", cors(corsOptions));
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (req,res)=>
