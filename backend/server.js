@@ -20,14 +20,16 @@ const allowedOrigins = (process.env.CLIENT_URL || "")
 const corsOptions = {
     origin(origin, cb) {
         console.log("Origin:", origin);
-        console.log("Allowed Origins:", allowedOrigins);
-
         if (!origin) return cb(null, true);
 
         if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
             return cb(null, true);
         }
-      if(allowedOrigins.includes(origin)) return cb(null,true);
+      if(allowedOrigins.includes(origin)) {
+        console.log("Allowed");
+        return cb(null,true)
+    };
+      console.log("Blocked:", origin);
       return cb(new Error(`Origin ${origin} not allowed by CORS`));
 },
 credentials: true,
